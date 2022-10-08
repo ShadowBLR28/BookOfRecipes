@@ -1,0 +1,131 @@
+<div class=" ">
+    <form class="" [formGroup]="testForm">
+        <input type="text" class="form-control-plaintext form-control-lg center text-center fs-2"
+            formControlName="title" placeholder="Название рецепта" />
+        <div class="time d-flex justify-content-around">
+            <div>
+                <label class="form-label fs-6">Кол-во порций</label>
+                <input class="form-control" min="1" type="number" formControlName="portions" />
+            </div>
+            <div>
+                <label class="form-label fs-6">Время подготовки</label>
+                <input class="form-control" type="time" formControlName="prepareTime" />
+            </div>
+            <div>
+                <label class="form-label fs-6">Время приготовления</label>
+                <input class="form-control" type="time" formControlName="cookingTime" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="d-flex justify-content-around mt-3">
+                <div class="main-photo">
+                    <label class="form-label fs-6" for="inputGroupFile" aria-describedby="inputGroupFileAddon"
+                        id="inputGroupFile">
+                        Фото готового блюда
+                    </label>
+                    <br />
+                    <cropper></cropper>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-around mt-2 border-bottom border-secondary pb-4">
+            <div>
+                <label class="form-label fs-6">Уровень готовки:</label>
+                <select class="form-select" formControlName="cookingLevel">
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div>
+                <label class="form-label fs-6">Категория:</label>
+                <select class="form-select" formControlName="category">
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+        </div>
+        <div class="text-center my-2 border-bottom border-secondary pb-2">
+            <label class="fs-3 my-2">Ингредиенты</label>
+            <br />
+            <div formArrayName="ingredients">
+                <div *ngFor="let ingredient of ingredients.controls;let i = index" [formGroupName]="i">
+                    <div class="d-flex justify-content-center mb-3">
+                        <div>
+                            <input list="products-list" formControlName="name" placeholder="Ингредиент"
+                                class="form-control mx-auto" />
+                        </div>
+                        <div class="mx-1">
+                            <input type="number" min="0" formControlName="quantity" class="form-control " />
+                        </div>
+                        <div>
+                            <select class="form-select" formControlName="unitValue">
+                                <option selected>мл</option>
+                                <option>г</option>
+                                <option>по вкусу</option>
+                                <option>Three</option>
+                            </select>
+                        </div>
+                        <div>
+                            <button class="btn-close" [style.visibility]="i+1>1?'true':'hidden'"
+                                (click)="removeIngredient()"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-outline-success border-0" (click)="addIngredient()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                    class="bi bi-plus-circle" viewBox="0 0 20 18">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                    <path
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                </svg>
+                Ингредиент
+            </button>
+        </div>
+        <div class="instruction text-center border-secondary">
+            <label class="fs-3 my-2">Пошаговая инструкиця</label>
+            <div class="steps" formArrayName="steps">
+                <div *ngFor="let step  of steps.controls; let i = index" [formGroupName]="i">
+                    <input type="hidden" [ngModel]="i+1" formControlName="number">
+                    <label class="form-label">Шаг {{i+1}}</label>
+                    <div class="d-flex justify-content-around mt-2 me-4 pb-4">
+                        <cropper class="me-2" (imageChanged)="imageChanged(i,$event)">
+                        </cropper>
+                        <textarea class="form-control" type="text" formControlName="description"
+                            placeholder="Инструкция к шагу приготовления"></textarea>
+                        <div>
+                            <button class="btn-close" [style.visibility]="i+1>1?'true':'hidden'"
+                                (click)="removeStep(i)"></button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <button class="btn btn-outline-success border-0 mb-4" (click)="addStep()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                    class="bi bi-plus-circle" viewBox="0 0 20 18">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                    <path
+                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                </svg>
+                Шаг
+            </button>
+        </div>
+        <div class="mx-auto text-center">
+            <input type="submit" class="btn btn-success mx-auto px-4 my-2" value="Send recipe on moderation">
+        </div>
+    </form>
+    {{testForm.value |json}}
+</div>
+<datalist id="products-list">
+    <option value="Курица">
+    <option value="Перец">
+    <option value="Вода">
+    <option value="Приправа">
+    <option value="Соль">
+    <option value="Какашка">
+</datalist>

@@ -1,0 +1,29 @@
+<nav class="toolbar border-bottom border-secondary" role="banner">
+    <img width="48" class="img-fluid" alt="Logo" title="Logo" src="../../../assets/logo-transparent.png" />
+    <h4>Tasty food</h4>
+    <div class="spacer"></div>
+    <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+    <ul class="nav navbar-nav mx-4">
+        <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle user-logo" title="User"  data-bs-toggle="dropdown" >
+                UserName
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                    class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                    <path fill-rule="evenodd"
+                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                </svg>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end border border-secondary mt-2">
+                <a href="#" class="dropdown-item border-bottom border-secondary">Profile</a>
+                <a href="#" class="dropdown-item border-bottom border-secondary">Favorites</a>
+                <a href="#" class="dropdown-item border-bottom border-secondary">Recipes</a>
+                <a href="#" class="dropdown-item border-bottom border-secondary">New recipe</a>
+                <a href="#" class="dropdown-item mt-3">Logout</a>
+            </div>
+        </li>
+    </ul>
+</nav>

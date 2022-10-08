@@ -1,0 +1,51 @@
+<div class="m-4">
+    <div class="introduction-content">
+        <div class="text-center p-4">
+            <h1>{{recipe.title}}</h1>
+        </div>
+        <div>
+            <img src="../../../../assets/2.jpg">
+        </div>
+        <div class="mt-4 fs-6 fw-bold ">
+            <span>{{recipe.description}}</span>
+        </div>
+        <div class="ingredients d-flex flex-column fs-6 fw-bold my-3">
+            <div *ngFor="let ingredient of recipe.ingredients">
+                <div class="text-white"><span class="product-name">{{ingredient.name}}</span></div>
+                <div><span class="product-countity text-white">{{ingredient.countity}} {{ingredient.unitValue}}</span>
+                </div>
+                <span class="border-bottom border-primary">
+                    <hr class="separator">
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="instruction text-white">
+        <div class="card-title fs-4 my-4 fw-bold">ИНСТРУКЦИЯ ПРИГОТОВЛЕНИЯ</div>
+        <div class="instruction-content card-body">
+            <div class="d-flex flex-row my-4 " *ngFor="let step of recipe.steps">
+                <div class="w-50 pe-4">
+                    <img class="img img-fluid" src="../../../../assets/2.jpg">
+                </div>
+                <div class="w-50 ps-4">
+                    <div>
+                        <span class="fs-5 fw-bold">Шаг {{step.number}} </span>
+                    </div>
+                    <div>
+                        <span>{{step.description}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="d-flex justify-content-center rating-center border border-secondary pb-2">
+    <rating class="text-warning fs-1 align-item-center" [readonly]="isRated" [(ngModel)]="rating"
+        (click)="rateRecipe()">
+    </rating>
+</div>
+<h2 class="text-center pt-0 mt-0"><span class="p-0 text-uppercase">rate this recipe</span></h2>
+<div class="ms-4 w-75">
+        <comments class="ms-4 me-4" [currentUserId]="'1'"></comments>
+</div>
+<scroll-down></scroll-down>

@@ -1,0 +1,39 @@
+<div>
+    <img src="../../../assets/logo.png">
+    <h2 class="text-center">First name  Last name</h2>
+    <dl class="row row-cols-3 text-center description-text text-uppercase">
+        <a>
+            <dt class="fs-6">10</dt>
+            <dd>followers</dd>
+        </a>
+        <a>
+            <dt class="fs-6">200</dt>
+            <dd>subscribers</dd>
+        </a>
+        <a>
+            <dt class="fs-6">100</dt>
+            <dd>recipes</dd>
+        </a>
+    </dl>
+    <div class="d-flex justify-content-center">
+        <button *ngIf="!isSubscribed" class="btn btn-success text-uppercase fw-bold"
+            (click)="changeSubscriptionStatus()">Subscribe</button>
+        <button *ngIf="isSubscribed" class="btn btn-danger text-uppercase fw-bold" (click)="changeSubscriptionStatus()">
+            Unsubscribe</button>
+    </div>
+    <div class="container mt-3 ">
+        <input type="checkbox" id="trigger" hidden />
+        <label for="trigger" class="btn btn-success d-flex justify-content-center bg-transparent">More info</label>
+        <div id="myCollapse" class="testCollapse">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </div>
+    </div>
+    <div class="my-2 text-center">
+        <img src="../../../assets/logo.png">
+        <a href="#">
+            <h4>Хочешь увеличить член?Тогда жми</h4>
+        </a>
+    </div>
+</div>

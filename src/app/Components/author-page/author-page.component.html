@@ -1,0 +1,10 @@
+<div>
+    <div class="author-recipes">
+        <div class="row row-cols-1">
+            <preview-recipe *ngFor="let recipe of recipes" [recipe]="recipe"></preview-recipe>
+        </div>
+    </div>
+    <div class="author-info border-start p-3">
+        <author-page-profile></author-page-profile>
+    </div>
+</div>

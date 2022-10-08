@@ -1,0 +1,139 @@
+<div *ngIf="isLoginModal" #authModal>
+    <div class="modal-header">
+        <h4 class="modal-title text-primary " id="modal-basic-title">Login</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close('close')"></button>
+    </div>
+    <div class="modal-body">
+        <div class="d-flex justify-content-between">
+            <div class="auth-email pe-4 w-50">
+                <div>
+                    <span class="h6">С помощью электронной почты</span>
+                </div>
+                <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+                    <div class="my-2">
+                        <input type="email" class="rounded-pill p-2 form-control" formControlName="login"
+                            placeholder="Email">
+                        <div *ngIf="loginLF.errors && loginLF.touched">
+                            <span *ngIf="loginLF.hasError('required')" class="text-danger">Must
+                                be required</span>
+                            <span *ngIf="loginLF.hasError('email')" class="text-danger"> Must
+                                be email format</span>
+                        </div>
+                    </div>
+                    <div class="my-2">
+                        <input type="password" formControlName="password" class="rounded-pill p-2 form-control"
+                            placeholder="Password">
+                        <div *ngIf="passwordLF.errors && passwordLF.touched">
+                            <span *ngIf="passwordLF.hasError('required')" class="text-danger"> Must be required</span>
+                            <span *ngIf="passwordLF.hasError('minlength')" class="text-danger"> Must be greater than 6
+                                symbols</span>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="submit" class="btn btn-primary rounded-pill w-100" value="Register">
+                    </div>
+                </form>
+            </div>
+            <div class="other-auth w-50">
+                <div>
+                    <h5>Another way to login</h5>
+                </div>
+                <div>
+                    <i class="fa fa-facebook"></i>
+                    <a href="#" class="fa fa-twitter"></a>
+                    <a href="#" class="fa fa-google"></a>
+                    <a href="#" class="fa fa-linkedin"></a>
+                    <a href="#" class="fa fa-youtube"></a>
+                    <a href="#" class="fa fa-instagram"></a>
+                </div>
+                <div>
+                    <h6>Нажимая кнопку входа вы автоматических принимаете
+                        <a href="google.com" class="text-primary">условия пользовательского соглашения и политики
+                            безопасности</a>
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer text-center justify-content-center">
+        <button type="button" class="btn btn-primary bg-transparent text-primary border-0 mr-auto focus-none"
+            (click)="isLoginModal = !isLoginModal">Register</button>
+    </div>
+</div>
+<div *ngIf="!isLoginModal">
+    <div class="modal-header">
+        <h4 class="modal-title text-primary">Registration</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            (click)="activeModal.close('close')">
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="d-flex justify-content-between">
+            <div class="auth-email pe-4 w-50">
+                <div>
+                    <span class="h6">С помощью электронной почты</span>
+                </div>
+                <form [formGroup]="registerForm" (ngSubmit)="onRegistrationSubmit()">
+                    <div class="my-2">
+                        <input type="email" class="rounded-pill p-2 form-control" formControlName="login"
+                            placeholder="Email">
+                        <div *ngIf="loginRF.errors && loginRF.touched">
+                            <span *ngIf="loginRF.hasError('required')" class="text-danger">Must
+                                be required</span>
+                            <span *ngIf="loginRF.hasError('email')" class="text-danger"> Must
+                                be email format</span>
+                        </div>
+                    </div>
+                    <div class="my-2">
+                        <input type="password" formControlName="password" class="rounded-pill p-2 form-control"
+                            placeholder="Password">
+                        <div *ngIf="passwordRF.errors && passwordRF.touched">
+                            <span *ngIf="passwordRF.hasError('required')" class="text-danger"> Must be required</span>
+                            <span *ngIf="passwordRF.hasError('minlength')" class="text-danger"> Must be greater than 6
+                                symbols</span>
+                        </div>
+                    </div>
+                    <div class="my-2">
+                        <input type="password" formControlName="confirmPassword" class="rounded-pill p-2 form-control"
+                            placeholder="Repeat password">
+                        <div *ngIf="confirmPassword.errors && confirmPassword.touched">
+                            <span *ngIf="confirmPassword.hasError('required')" class="text-danger"> Must be
+                                required</span>
+                            <span *ngIf="confirmPassword.hasError('minlength')" class="text-danger"> Must be greater
+                                than 6
+                                symbols</span>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="button" class="btn btn-primary rounded-pill w-100" (click)="onRegistrationSubmit()"
+                            value="Register">
+                    </div>
+                </form>
+            </div>
+            <div class="other-auth w-50">
+                <div>
+                    <h5>Another way to login</h5>
+                </div>
+                <div>
+                    <a href="#" class="fa fa-facebook"></a>
+                    <a href="#" class="fa fa-twitter"></a>
+                    <a href="#" class="fa fa-google"></a>
+                    <a href="#" class="fa fa-linkedin"></a>
+                    <a href="#" class="fa fa-youtube"></a>
+                    <a href="#" class="fa fa-instagram"></a>
+                </div>
+                <div>
+                    <h6>Нажимая кнопку входа вы автоматических принимаете
+                        <a href="google.com" class="text-primary">условия пользовательского соглашения и политики
+                            безопасности</a>
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer text-center justify-content-center">
+        <button type="button" class="btn btn-primary bg-transparent text-primary border-0 mr-auto focus-none"
+            data-toggle="modal" data-target="#loginModal" (click)="isLoginModal = !isLoginModal">I already have an
+            account</button>
+    </div>
+</div>

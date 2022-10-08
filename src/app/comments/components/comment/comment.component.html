@@ -1,0 +1,43 @@
+<div class="my-2">
+    <div class="card-title d-flex flex-row">
+        <img src="../../../../assets/logo.png" class="img avatar rounded-circle mt-1">
+        <div class="d-flex flex-column ms-2 ">
+            <span class="fs-6 fw-bold">{{comment.username}}</span>
+            <span class="fw-bold text-secondary">{{comment.createdAt | date:'d.MM.yyyy, h:mm'   }}</span>
+        </div>
+    </div>
+    <div class="fw-bold ms-2 ">
+        <span *ngIf="!isEditing()" class="px-1">{{comment.body}}</span>
+        <comment-form *ngIf="isEditing()"  
+        submitLabel="Update" 
+        [hasCancelButton]="true"
+        [initialText]="comment.body"
+        (handleSubmit)="updateComment.emit({text:$event,commentId:comment.id})"></comment-form>
+        <div class="mt-2 d-flex border-top border-secondary">
+            <div *ngIf="canReply" class="me-3 pb-1 pointer text-primary text-hover" (click)="setActiveComment.emit({id:comment.id,type:activeCommentType.replying})">Reply
+            </div>
+            <div *ngIf="canEdit" class="me-3 pb-1 pointer text-warning text-hover" (click)="setActiveComment.emit({id:comment.id,type:activeCommentType.editing})">Edit
+            </div>
+            <div *ngIf="canDelete" class="pb-1 text-danger pointer text-hover" (click)="deleteComment.emit(comment.id)">Delete</div>
+        </div>
+        <comment-form 
+        *ngIf="isReplying()"
+        submitLabel="Reply"
+        (handleSubmit)="addComment.emit({text:$event,parentId:replyId})"
+        (handleCancel)="setActiveComment.emit(null)"
+        ></comment-form>
+        <div class=" ms-4" *ngIf="replies.length > 0">
+            <comment *ngFor="let reply of replies" 
+            [comment]="reply" 
+            [activeComment]="activeComment"
+            [parentId]="comment.id" 
+            [replies]="[]" [currentUserId]="currentUserId"
+            (setActiveComment)="setActiveComment.emit($event)" 
+            (addComment)="addComment.emit($event)"
+            (updateComment)="updateComment.emit($event)"
+            (deleteComment)="deleteComment.emit($event)"
+            >
+            </comment>
+        </div>
+    </div>
+</div>

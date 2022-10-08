@@ -1,0 +1,7 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+
+body
+{
+    padding-top: 60px;
+    background-color:#252525;
+}

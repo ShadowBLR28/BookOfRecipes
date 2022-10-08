@@ -1,0 +1,12 @@
+.avatar {
+    max-width: 40px;
+    min-width: 16px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.text-hover:not(:hover) {
+    opacity: 0.5;
+}

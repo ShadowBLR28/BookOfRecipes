@@ -1,0 +1,49 @@
+<div class="card mb-3 border p-1" [class.border-success]="recipe.isFavorite">
+  <div class="row g-0">
+    <div class="col-md-4 mt-3 text-center">
+      <a href="#"><img src="{{recipe.imageUrl}}" class=" img img-responsive full-width" alt="{{recipe.title}}"></a>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h3 class="card-title"><a href="#" class="link-dark text-decoration-none">{{recipe.title}}</a></h3>
+        <p class="card-text mb-0">{{recipe.shortDescription}}</p>
+        <div class="fs-5">
+          <rating class="text-warning me-1" [readonly]="true" [ngModel]="recipe.rating"></rating>
+          <span>{{recipe.rating}}</span>
+        </div>
+        <div class="row row-cols-3 text-center text-nowrap">
+          <div class="">
+            <small class="text-muted">Prepare</small>
+            <div class="rounded-circle">
+              <i class="fa fa-hourglass-o" aria-hidden="true"></i>
+            </div>
+            <small>{{recipe.prepareTime}} min</small>
+          </div>
+          <div class="">
+            <small class="text-muted">Cooking</small>
+            <div class="rounded-circle">
+              <i class="fa fa-clock-o" aria-hidden="true"></i>
+            </div>
+            <small>{{recipe.prepareTime}} min</small>
+          </div>
+          <div class="">
+            <small class="text-muted">Portions</small>
+            <div class="rounded-circle">
+              <i class="fa fa-cutlery" aria-hidden="true"></i>
+            </div>
+            <small>{{recipe.prepareTime}}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button *ngIf="!recipe.isFavorite" class="btn p-1 my-2 fs-7 border-secondary text-uppercase "
+    (click)="changeFavoriteStaus()">
+    <i class="fa fa-bookmark-o" aria-hidden="true"> Add to favorite</i>
+  </button>
+  <button *ngIf="recipe.isFavorite"
+    class="btn p-1 my-2 fs-7 border-secondary text-uppercase text-success border-success"
+    (click)="changeFavoriteStaus()">
+    <i class="fa fa-bookmark" aria-hidden="true"> Added to favorite</i>
+  </button>
+</div>
